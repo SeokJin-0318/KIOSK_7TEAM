@@ -56,8 +56,6 @@
 		6CCA18272B3BFCF4008A5072 /* KIOSK */ = {
 			isa = PBXGroup;
 			children = (
-				6CCA183D2B3C143D008A5072 /* Model */,
-				6CCA183C2B3C1416008A5072 /* Cells */,
 				6CCA18282B3BFCF5008A5072 /* AppDelegate.swift */,
 				6CCA182A2B3BFCF5008A5072 /* SceneDelegate.swift */,
 				6CCA182C2B3BFCF5008A5072 /* ViewController.swift */,
@@ -67,20 +65,6 @@
 				6CCA18362B3BFCFB008A5072 /* Info.plist */,
 			);
 			path = KIOSK;
-			sourceTree = "<group>";
-		};
-		6CCA183C2B3C1416008A5072 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		6CCA183D2B3C143D008A5072 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
