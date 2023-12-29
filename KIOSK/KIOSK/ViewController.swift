@@ -1,21 +1,44 @@
 //
-//  ViewController.swift
+//  CategoryBar.swift
 //  KIOSK
 //
-//  Created by 석진 on 12/27/23.
-
-//  Payment 기능 추가 by 지웅 on 12/28/23.
+//  Created by 洪立妍 on 12/28/23.
+//
 
 import UIKit
-
 class ViewController: UIViewController {
-    
-    override func viewDidLoad() {
-
-        super.viewDidLoad()
-    
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    let categoryBar = createCategoryBar()
+    view.addSubview(categoryBar)
+    categoryBar.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      categoryBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+      categoryBar.leadingAnchor.constraint(equalTo: view.leadingAnchor ,constant: 40),
+      categoryBar.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -40),
+      categoryBar.heightAnchor.constraint(equalToConstant: 50)
+    ])
+  }
+  private func createCategoryBar() -> UIStackView {
+    let stackView = UIStackView()
+    stackView.axis = .horizontal
+    stackView.distribution = .fillEqually
+    stackView.spacing = 10
+    let categories = ["햄버거", "사이드", "음료"]
+    for category in categories {
+      let button = UIButton(type: .system)
+      button.setTitle(category, for: .normal)
+      button.addTarget(self, action: #selector(categoryButtonTapped(_:)), for: .touchUpInside)
+      stackView.addArrangedSubview(button)
     }
-
+    return stackView
+  }
+  @objc private func categoryButtonTapped(_ sender: UIButton) {
+    if let category = sender.title(for: .normal) {
+      print("Selected category: \(category)")
+    }
+  }
+    
     // 취소하기 버튼 함수
     @IBAction func cancelAction(_ sender: UIButton) {
         handleCancel()
@@ -46,4 +69,6 @@ class ViewController: UIViewController {
         }))
         self.present(alert, animated: true)
     }
+    
 }
+
