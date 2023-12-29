@@ -9,19 +9,31 @@
 
 import UIKit
 
+// ViewController를 구성하는 요소는 1.카테고리(UIStackView), 2.메뉴화면(UICollectionView), 3.장바구니(UITableView), 취소/결제(UIButton)
 class ViewController: UIViewController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    let categoryBar = createCategoryBar()
-    view.addSubview(categoryBar)
-    categoryBar.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      categoryBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-      categoryBar.leadingAnchor.constraint(equalTo: view.leadingAnchor ,constant: 40),
-      categoryBar.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -40),
-      categoryBar.heightAnchor.constraint(equalToConstant: 50)
-    ])
-  }
+    
+    // 1. 카테고리(UIStackView) : 임시로 UIButton만으로 구성하였음.
+    // 각 버튼들은 HamburgerMenus, SideMenus, DrinkMenus 중 해당하는 Structure를 불러와 menus에 할당하고, menuCollection(메뉴화면)을 reload한다.
+    // 2.메뉴화면(이미지, 이름, 가격)을 구성하는 menuCollection(UICollectionView)과
+    // 3.장바구니(이름, 수량, 가격, +,-버튼)을 구성하는 cart(UITableView).
+    // 4.결제여부를 결정하는 UIButton과 UIAlertController.
+    @IBOutlet weak var menuCollection: UICollectionView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        menuCollection.delegate = self
+        menuCollection.dataSource = self
+        let categoryBar = createCategoryBar()
+        view.addSubview(categoryBar)
+        categoryBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            categoryBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            categoryBar.leadingAnchor.constraint(equalTo: view.leadingAnchor ,constant: 40),
+            categoryBar.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -40),
+            categoryBar.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+
     
   private func createCategoryBar() -> UIStackView {
     let stackView = UIStackView()
