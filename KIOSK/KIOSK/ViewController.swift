@@ -52,11 +52,29 @@ class ViewController: UIViewController {
     return stackView
   }
     
-  @objc private func categoryButtonTapped(_ sender: UIButton) {
-    if let category = sender.title(for: .normal) {
-      print("Selected category: \(category)")
+    
+    
+    
+    @objc private func categoryButtonTapped(_ sender: UIButton) {
+        if let category = sender.title(for: .normal) {
+            print("Selected category: \(category)")
+            
+      
+            switch category {
+            case "햄버거":
+                menus = HamburgerMenus()
+            case "사이드":
+                menus = SideMenus()
+            case "음료":
+                menus = DrinkMenus()
+            default:
+                break
+            }
+            
+            menuCollection?.reloadData()
+        }
     }
-  }
+    
     
     // 취소하기 버튼 함수
     @IBAction func cancelAction(_ sender: UIButton) {
