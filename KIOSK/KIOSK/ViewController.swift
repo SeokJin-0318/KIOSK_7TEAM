@@ -10,11 +10,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var CartTableView: UITableView!
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     let categoryBar = createCategoryBar()
     view.addSubview(categoryBar)
     categoryBar.translatesAutoresizingMaskIntoConstraints = false
+      
     NSLayoutConstraint.activate([
       categoryBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
       categoryBar.leadingAnchor.constraint(equalTo: view.leadingAnchor ,constant: 40),
@@ -78,4 +82,3 @@ class ViewController: UIViewController {
     }
     
 }
-

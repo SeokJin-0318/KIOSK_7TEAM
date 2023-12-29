@@ -9,6 +9,7 @@ import UIKit
 
 class CartCell: UITableViewCell {
 
+    var cart: Cart?
     
     override func awakeFromNib() {
         super.awakeFromNib()
