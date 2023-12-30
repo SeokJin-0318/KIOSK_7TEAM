@@ -15,6 +15,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var menuCollection: UICollectionView!
     @IBOutlet weak var CartTableView: UITableView!
     
+    @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    
+    var totalAmount: Int = 0, totalPrice: Int = 0
+    
+    
+    
     // 1. 카테고리(UIStackView) : 임시로 UIButton만으로 구성하였음.
     // 각 버튼들은 HamburgerMenus, SideMenus, DrinkMenus 중 해당하는 Structure를 불러와 menus에 할당하고, menuCollection(메뉴화면)을 reload한다.
     // 2.메뉴화면(이미지, 이름, 가격)을 구성하는 menuCollection(UICollectionView)과
@@ -26,6 +33,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         menuCollection.delegate = self
         menuCollection.dataSource = self
+        CartTableView.delegate = self
+        CartTableView.dataSource = self
+        
         let categoryBar = createCategoryBar()
         view.addSubview(categoryBar)
         categoryBar.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +45,8 @@ class ViewController: UIViewController {
             categoryBar.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -40),
             categoryBar.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
+        self.refreshLabel()
     }
     
   private func createCategoryBar() -> UIStackView {
@@ -59,6 +71,12 @@ class ViewController: UIViewController {
       print("Selected category: \(category)")
     }
   }
+    
+    func refreshLabel()     // 총 수량과 총 가격 반영 함수
+    {
+        self.totalAmountLabel.text = String(self.totalAmount) + "개"
+        self.totalPriceLabel.text = String(self.totalPrice) + "원"
+    }
     
     // 취소하기 버튼 함수
     @IBAction func cancelAction(_ sender: UIButton) {
