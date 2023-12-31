@@ -32,17 +32,12 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     
-    func addToCart(name: String, price: Int) {
-    }
-    
     // menuCollection(UICollectionView)에서 사용자가 cell을 선택했을 때(사용자입력),
     // 선택한 cell의 메뉴이름과 가격을 함수 addToCart의 파라미터로 할당한다.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMenuName = menus.menuNames[indexPath.row]
         let selectedMenuPrice = Int(menus.menuPrices[selectedMenuName] ?? 0)
-        print("You Tapped \(selectedMenuName)")
-        print("\(selectedMenuName) is ₩\(selectedMenuPrice)")
-        addToCart(name: selectedMenuName, price: selectedMenuPrice)
+        addToCart(menuName: selectedMenuName, menuPrice: selectedMenuPrice)     //선택한 값을 CarteCell의 새로 만들어질 cell에 전달
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
