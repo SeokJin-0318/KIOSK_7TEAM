@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalPriceLabel: UILabel!
     
     var totalAmount: Int = 0, totalPrice: Int = 0
+    var cartMenuAmounts: [Int] = []     // 각 셀의 수량을 저장하는 배열
+    var cartList: [Cart] = []
+    
     
     
     
@@ -45,8 +48,6 @@ class ViewController: UIViewController {
             categoryBar.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -40),
             categoryBar.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        self.refreshLabel()
     }
     
   private func createCategoryBar() -> UIStackView {
@@ -72,10 +73,18 @@ class ViewController: UIViewController {
     }
   }
     
-    func refreshLabel()     // 총 수량과 총 가격 반영 함수
-    {
-        self.totalAmountLabel.text = String(self.totalAmount) + "개"
-        self.totalPriceLabel.text = String(self.totalPrice) + "원"
+    // CollectionViewCell에서 선택한 셀의 메뉴 이름과 가격을 전달
+    func addToCart(menuName: String, menuPrice: Int) {
+        let cartItem = Cart(index: cartList.count, menuName: menuName, menuAmount: 1, menuPrice: menuPrice)
+            cartList.append(cartItem)
+            CartTableView.reloadData() // 테이블 뷰 갱신
+            refreshTotalLabel() // 총 수량 및 가격 갱신
+        }
+    
+    // 총 수량과 총 가격 반영 함수
+    func refreshTotalLabel(){
+        self.totalAmountLabel.text = "\(self.totalAmount)개"
+        self.totalPriceLabel.text = "\(self.totalPrice)원"
     }
     
     // 취소하기 버튼 함수
@@ -110,3 +119,4 @@ class ViewController: UIViewController {
     }
     
 }
+

@@ -108,12 +108,12 @@
 				6C543C392B3E6EC00062C0F1 /* Cells */,
 				6C543C412B3FF7A70062C0F1 /* Extension */,
 				BA82C2C42B3D678900029274 /* ViewController.swift */,
-				6CCA18282B3BFCF5008A5072 /* AppDelegate.swift */,
-				6CCA182A2B3BFCF5008A5072 /* SceneDelegate.swift */,
 				6CCA182E2B3BFCF5008A5072 /* Main.storyboard */,
 				6CCA18312B3BFCFB008A5072 /* Assets.xcassets */,
 				6CCA18332B3BFCFB008A5072 /* LaunchScreen.storyboard */,
 				6CCA18362B3BFCFB008A5072 /* Info.plist */,
+				6CCA18282B3BFCF5008A5072 /* AppDelegate.swift */,
+				6CCA182A2B3BFCF5008A5072 /* SceneDelegate.swift */,
 			);
 			path = KIOSK;
 			sourceTree = "<group>";

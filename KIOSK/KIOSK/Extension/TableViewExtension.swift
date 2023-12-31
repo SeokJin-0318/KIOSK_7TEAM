@@ -11,13 +11,17 @@ import UIKit
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return cartList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = CartTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        return cell
+        // dequeueReusableCell에서 셀을 가져올 때 적절한 타입으로 다운캐스팅이 필요합니다.
+        let cell = CartTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CartCell
+               let cartItem = cartList[indexPath.row]
+               cell.cartMenuNameLabel.text = cartItem.menuName
+               cell.cartMenuAmountLabel.text = "\(cartItem.menuAmount)개"
+               cell.cartMenuPriceLabel.text = "\(cartItem.menuPrice)원"
+               return cell
     }
-    
-    
+
 }

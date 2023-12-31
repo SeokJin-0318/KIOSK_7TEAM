@@ -11,5 +11,6 @@ struct Cart
 {
     var index: Int
     var menuName: String
+    var menuAmount: Int
     var menuPrice: Int
 }
