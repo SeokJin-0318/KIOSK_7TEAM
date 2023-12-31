@@ -14,3 +14,7 @@ struct Cart
     var menuAmount: Int
     var menuPrice: Int
 }
+
+protocol CartCellDelegate: AnyObject {
+    func updateTotalPrice(for cell: CartCell)
+}

@@ -37,8 +37,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMenuName = menus.menuNames[indexPath.row]
         let selectedMenuPrice = Int(menus.menuPrices[selectedMenuName] ?? 0)
-        print("You Tapped \(selectedMenuName)")
-        print("\(selectedMenuName) is ₩\(selectedMenuPrice)")
         addToCart(menuName: selectedMenuName, menuPrice: selectedMenuPrice)     //선택한 값을 CarteCell의 새로 만들어질 cell에 전달
         collectionView.deselectItem(at: indexPath, animated: true)
     }
