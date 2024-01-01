@@ -73,9 +73,7 @@ class ViewController: UIViewController {
     
     @objc private func categoryButtonTapped(_ sender: UIButton) {
         if let category = sender.title(for: .normal) {
-            print("Selected category: \(category)")
-            
-      
+        
             switch category {
             case "햄버거":
                 menus = HamburgerMenus()
@@ -100,6 +98,19 @@ class ViewController: UIViewController {
             refreshTotalLabel() // 총 수량 및 가격 갱신
         }
     
+    @IBAction func aI(_ sender: Any) {
+        cartList[0].menuAmount += 1
+        totalAmount += 1
+        refreshTotalLabel()
+    }
+    
+    
+    @IBAction func dI(_ sender: Any) {
+        cartList[0].menuAmount -= 1
+        totalAmount -= 1
+        refreshTotalLabel()
+    }
+    
     // 총 수량과 총 가격 반영 함수
     func refreshTotalLabel(){
         self.totalAmountLabel.text = "\(self.totalAmount)개"
@@ -116,13 +127,22 @@ class ViewController: UIViewController {
         // totalPrice 값 필요.
         handlePay()
     }
+    
+    // 주문내역 제거 함수
+    func clearCart() {
+        cartList.removeAll()
+        CartTableView.reloadData()
+        totalAmount = 0
+        totalPrice = 0
+        refreshTotalLabel() // 총 수량 및 가격 갱신
+    }
 
     // 취소하기 버튼 함수
     func handleCancel() {
         let alert = UIAlertController(title: "주문을 취소하시겠습니까?", message: "장바구니의 메뉴들이 사라집니다.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: { _ in
-            // 장바구니 비우기 코드
+            self.clearCart()
         }))
         self.present(alert, animated: true)
     }
@@ -156,7 +176,7 @@ extension ViewController: CartCellDelegate {
             return totalPrice
         }
         totalPrice = calculateTotalPrice()
-        totalPriceLabel.text = "\(totalPrice)원"
+        refreshTotalLabel()
     }
 }
 

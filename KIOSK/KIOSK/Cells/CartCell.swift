@@ -23,10 +23,11 @@ class CartCell: UITableViewCell {
             self.cart = cart
             self.cartMenuAmount = cart.menuAmount
             self.cartMenuPrice = cart.menuPrice
+            self.payPrice = cart.menuPrice * cart.menuAmount
             self.refreshLabel()
         }
     
-    var cartMenuAmount: Int = 0, cartMenuPrice = 0      // 각 셀의 수량, 가격
+    var cartMenuAmount: Int = 0, cartMenuPrice: Int = 0, payPrice: Int = 0      // 각 셀의 수량, 가격
     var cellIndex: Int = 0
     
     
