@@ -15,35 +15,22 @@ class CartCell: UITableViewCell {
     @IBOutlet weak var cartMenuAmountLabel: UILabel!
     @IBOutlet weak var cartMenuPriceLabel: UILabel!
     
-    var cart: Cart?
-    var cartList: [Cart]?
     
-    // Cart 속성 설정
-    func setCart(_ cart: Cart) {
-            self.cart = cart
-            self.cartMenuAmount = cart.menuAmount
-            self.cartMenuPrice = cart.menuPrice
-            self.payPrice = cart.menuPrice * cart.menuAmount
-            self.refreshLabel()
-        }
-    
-    var cartMenuAmount: Int = 0, cartMenuPrice: Int = 0, payPrice: Int = 0      // 각 셀의 수량, 가격
-    var cellIndex: Int = 0
-    
+    var cartMenuAmount: Int = 0, cartMenuPrice: Int = 0, originPrice: Int = 0      // 각 셀의 수량, 가격, 실제 계산할 가격 값
     
     @IBAction func amountIncrease(_ sender: Any) {      // 메뉴 수량 증가
         self.cartMenuAmount += 1
-        self.cartMenuPrice = 1000 * self.cartMenuAmount
+        self.cartMenuPrice = originPrice * self.cartMenuAmount
         self.refreshLabel()
-        delegate?.updateTotalPrice(for: self)
+        delegate?.addTotalPrice(for: self)
     }
     
     @IBAction func amountDecrease(_ sender: Any) {      // 메뉴 수량 감소
         if self.cartMenuAmount > 0 {    // 0개 미만으로 변경되지 않음
             self.cartMenuAmount -= 1
-            self.cartMenuPrice = 1000 * self.cartMenuAmount
+            self.cartMenuPrice = originPrice * self.cartMenuAmount
             self.refreshLabel()
-            delegate?.updateTotalPrice(for: self)
+            delegate?.subtractionTotalPrice(for: self)
         }
     }
     
