@@ -68,11 +68,29 @@ class ViewController: UIViewController {
     return stackView
   }
     
-  @objc private func categoryButtonTapped(_ sender: UIButton) {
-    if let category = sender.title(for: .normal) {
-      print("Selected category: \(category)")
+    
+    
+    
+    @objc private func categoryButtonTapped(_ sender: UIButton) {
+        if let category = sender.title(for: .normal) {
+            print("Selected category: \(category)")
+            
+      
+            switch category {
+            case "햄버거":
+                menus = HamburgerMenus()
+            case "사이드":
+                menus = SideMenus()
+            case "음료":
+                menus = DrinkMenus()
+            default:
+                break
+            }
+            
+            menuCollection?.reloadData()
+        }
     }
-  }
+    
     
     // CollectionViewCell에서 선택한 셀의 메뉴 이름과 가격을 전달
     func addToCart(menuName: String, menuPrice: Int) {
