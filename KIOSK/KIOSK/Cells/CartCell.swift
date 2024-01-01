@@ -16,6 +16,7 @@ class CartCell: UITableViewCell {
     @IBOutlet weak var cartMenuPriceLabel: UILabel!
     
     var cart: Cart?
+    var cartList: [Cart]?
     
     // Cart 속성 설정
     func setCart(_ cart: Cart) {
@@ -26,6 +27,7 @@ class CartCell: UITableViewCell {
         }
     
     var cartMenuAmount: Int = 0, cartMenuPrice = 0      // 각 셀의 수량, 가격
+    var cellIndex: Int = 0
     
     
     @IBAction func amountIncrease(_ sender: Any) {      // 메뉴 수량 증가

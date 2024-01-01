@@ -16,5 +16,9 @@ struct Cart
 }
 
 protocol CartCellDelegate: AnyObject {
-    func updateTotalPrice(for cell: CartCell)
+    func updateTotalPrice(for cell: CartCell)       // 총 주문금액
+}
+
+protocol MenuCellDelegate: AnyObject {
+    func addToCart(menuName: String, menuPrice: Int)
 }

@@ -123,13 +123,16 @@ class ViewController: UIViewController {
 
 // totalPrice에 값 전달
 extension ViewController: CartCellDelegate {
+    
     func updateTotalPrice(for cell: CartCell) {
+        
         func calculateTotalPrice() -> Int
         {
             var totalPrice = 0
 
             for i in 0 ..< cartList.count {
                 totalPrice += cartList[i].menuPrice * cartList[i].menuAmount
+                
                 }
             refreshTotalLabel()
             return totalPrice
