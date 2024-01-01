@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CollectionViewExtension.swift
 //  KIOSK
 //
 //  Created by t2023-m0026 on 12/29/23.
