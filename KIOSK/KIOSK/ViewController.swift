@@ -48,7 +48,7 @@ class ViewController: UIViewController {
             categoryBar.heightAnchor.constraint(equalToConstant: 50)
         ])
         
-        self.refreshTotalLabel()
+        self.refreshTotalLabel()        // 최초에 총 수량과 총 가격을 0원으로 출력
     }
     
   private func createCategoryBar() -> UIStackView {
@@ -98,19 +98,6 @@ class ViewController: UIViewController {
             refreshTotalLabel() // 총 수량 및 가격 갱신
         }
     
-    @IBAction func aI(_ sender: Any) {
-        cartList[0].menuAmount += 1
-        totalAmount += 1
-        refreshTotalLabel()
-    }
-    
-    
-    @IBAction func dI(_ sender: Any) {
-        cartList[0].menuAmount -= 1
-        totalAmount -= 1
-        refreshTotalLabel()
-    }
-    
     // 총 수량과 총 가격 반영 함수
     func refreshTotalLabel(){
         self.totalAmountLabel.text = "\(self.totalAmount)개"
@@ -159,24 +146,22 @@ class ViewController: UIViewController {
     
 }
 
-// totalPrice에 값 전달
+// 테이블 뷰 셀의 수량 변경 버튼을 눌렀을때 totalPrice와 totalAmount 변경
 extension ViewController: CartCellDelegate {
     
-    func updateTotalPrice(for cell: CartCell) {
-        
-        func calculateTotalPrice() -> Int
-        {
-            var totalPrice = 0
-
-            for i in 0 ..< cartList.count {
-                totalPrice += cartList[i].menuPrice * cartList[i].menuAmount
-                
-                }
-            refreshTotalLabel()
-            return totalPrice
-        }
-        totalPrice = calculateTotalPrice()
+    func addTotalPrice(for cell: CartCell) {
+        totalAmount += 1
+        totalPrice += cell.originPrice
+            
         refreshTotalLabel()
     }
+    
+    func subtractionTotalPrice(for cell: CartCell) {
+        totalAmount -= 1
+        totalPrice -= cell.originPrice
+            
+        refreshTotalLabel()
+    }
+    
 }
 

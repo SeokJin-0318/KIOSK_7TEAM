@@ -58,8 +58,8 @@
 		6C543C392B3E6EC00062C0F1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				6C543C3B2B3E6F040062C0F1 /* CartCell.swift */,
 				3FF8A3222B3E620200856634 /* MyCollectionViewCell.swift */,
+				6C543C3B2B3E6F040062C0F1 /* CartCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cart
+struct Cart // TableViewCell에 필요한 변수
 {
     var index: Int
     var menuName: String
@@ -16,9 +16,6 @@ struct Cart
 }
 
 protocol CartCellDelegate: AnyObject {
-    func updateTotalPrice(for cell: CartCell)       // 총 주문금액
-}
-
-protocol MenuCellDelegate: AnyObject {
-    func addToCart(menuName: String, menuPrice: Int)
+    func addTotalPrice(for cell: CartCell)       // 총 주문금액 더하기, 총 수량 업데이트
+    func subtractionTotalPrice(for cell: CartCell)       // 총 주문금액 빼기, 총 수량 업데이트
 }
