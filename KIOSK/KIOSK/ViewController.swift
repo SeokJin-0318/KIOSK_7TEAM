@@ -94,6 +94,8 @@ class ViewController: UIViewController {
     func addToCart(menuName: String, menuPrice: Int) {
         let cartItem = Cart(index: cartList.count, menuName: menuName, menuAmount: 1, menuPrice: menuPrice)
             cartList.append(cartItem)
+            totalAmount += 1
+            totalPrice += menuPrice
             CartTableView.reloadData() // 테이블 뷰 갱신
             refreshTotalLabel() // 총 수량 및 가격 갱신
         }

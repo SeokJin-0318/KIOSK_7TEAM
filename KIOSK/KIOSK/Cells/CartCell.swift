@@ -16,7 +16,7 @@ class CartCell: UITableViewCell {
     @IBOutlet weak var cartMenuPriceLabel: UILabel!
     
     
-    var cartMenuAmount: Int = 0, cartMenuPrice: Int = 0, originPrice: Int = 0      // 각 셀의 수량, 가격, 실제 계산할 가격 값
+    var cartMenuAmount: Int = 1, cartMenuPrice: Int = 0, originPrice: Int = 0      // 각 셀의 수량, 가격, 실제 계산할 가격 값
     
     @IBAction func amountIncrease(_ sender: Any) {      // 메뉴 수량 증가
         self.cartMenuAmount += 1
